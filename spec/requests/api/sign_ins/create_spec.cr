@@ -28,6 +28,6 @@ end
 private def valid_params(user : User)
   {
     email:    user.email,
-    password: "password",
+    password: "password10",
   }
 end

@@ -4,12 +4,12 @@ describe "Authentication flow" do
   it "works" do
     flow = AuthenticationFlow.new("test@example.com")
 
-    flow.sign_up "password"
+    flow.sign_up "password10"
     flow.should_be_signed_in
     flow.sign_out
     flow.sign_in "wrong-password"
     flow.should_have_password_error
-    flow.sign_in "password"
+    flow.sign_in "password10"
     flow.should_be_signed_in
   end
 
