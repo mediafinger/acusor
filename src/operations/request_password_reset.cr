@@ -18,8 +18,10 @@ class RequestPasswordReset < Avram::Operation
 
   def validate(user : User?)
     validate_required email
-    if user.nil?
-      email.add_error "is not in our system"
-    end
+
+    # don't give away if user email exists or not
+    # if user.nil?
+    #   email.add_error "is not in our system"
+    # end
   end
 end
