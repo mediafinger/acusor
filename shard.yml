@@ -2,13 +2,22 @@ name: acusor
 version: 0.1.0
 
 authors:
-  - your-name-here <your-email-here>
+  - Andreas Finger <andy@mediafinger.com>
+
+description: |
+  acusor is an app to manage accounts, users, organizations
+
+homepage: https://github.com/mediafinger/acusor
+
+repository: git@github.com:mediafinger/acusor.git
 
 targets:
   acusor:
     main: src/acusor.cr
 
 crystal: 0.35.1
+
+# license: could be MIT, but is not yet
 
 dependencies:
   lucky:
