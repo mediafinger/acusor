@@ -1,7 +1,7 @@
 class Api::SignIns::Create < ApiAction
   include Api::Auth::SkipRequireAuthToken
 
-  route do
+  post "/api/login" do
     SignInUser.new(params).submit do |operation, user|
       if user
         json({token: UserToken.generate(user)})
