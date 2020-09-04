@@ -25,6 +25,20 @@ class Db::CreateRequiredSeeds < LuckyCli::Task
     # unless UserQuery.new.email("me@example.com").first?
     #  SaveUser.create!(email: "me@example.com", name: "Jane")
     # end
-    puts "Done adding required data"
+
+    email = "andy@example.com"
+    attributes = {
+      email: email,
+      password: "password10",
+      password_confirmation: "password10",
+    }
+
+    unless UserQuery.new.email(email).first?
+      SaveUser.create!(**attributes)
+    end
+
+
+    puts "Done adding required data, existing user:"
+    pp UserQuery.new.email(email).first
   end
 end
