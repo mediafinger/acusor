@@ -1,0 +1,39 @@
+name: Crystal CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: crystallang/crystal
+
+    steps:
+    - uses: actions/checkout@v2
+    # - name: Setup crystal-lang repo
+    #  run: curl -sSL https://dist.crystal-lang.org/apt/setup.sh | sudo bash
+    # - name: Install crystal-lang and system dependencies
+    #  run: sudo apt install crystal libyaml-dev
+    # apt-get install -y git libc6-dev libevent-dev libpcre2-dev libpng-dev libssl-dev libyaml-dev zlib1g-dev curl wget
+    # - name: Get yarn GPG key
+    #  run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+    # - name: Add yarn to repository list
+    #   run: echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+    # - name: Setup node
+    #  run: curl -sL https://deb.nodesource.com/setup_10.x | bash -
+    # - name: Download and install yarn
+    #   run: apt-get update && apt-get install -y yarn
+    - name: Install app's dependencies
+      run: shards install
+    - name: Install app's JS dependencies
+      run: yarn install
+    - name: Compile app's Assets
+      run: yarn dev
+    - name: Run app's tests
+      run: crystal spec
