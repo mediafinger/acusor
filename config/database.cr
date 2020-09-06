@@ -2,12 +2,12 @@ database_name = "acusor_#{Lucky::Env.name}"
 
 AppDatabase.configure do |settings|
   if Lucky::Env.production?
-    settings.url = ENV.fetch("DATABASE_URL")
+    settings.credentials = Avram::Credentials.parse(ENV["DATABASE_URL"])
   else
-    settings.url = Avram::PostgresURL.build(
+    settings.credentials = Avram::Credentials.new(
       database: database_name,
       hostname: "localhost",
-      port: "5432",
+      port: 5432,
       username: "postgres",
       password: "postgres"
     )
